@@ -1,2 +1,2 @@
 require "spec"
-require "../src/asdf_outdated"
+require "../src/outdated"

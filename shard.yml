@@ -1,12 +1,12 @@
-name: asdf_outdated
+name: asdf-outdated
 version: 0.1.0
 
 authors:
   - Michael Jochimsen <mlj@troglodytics.org>
 
 targets:
-  asdf_outdated:
-    main: src/asdf_outdated.cr
+  asdf-outdated:
+    main: src/outdated.cr
 
 crystal: 0.27.0
 

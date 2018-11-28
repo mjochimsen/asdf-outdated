@@ -1,6 +1,6 @@
 require "./spec_helper"
 
-describe AsdfOutdated do
+describe Outdated do
   # TODO: Write tests
 
   it "works" do
