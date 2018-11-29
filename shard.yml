@@ -4,6 +4,9 @@ version: 0.1.0
 authors:
   - Michael Jochimsen <mlj@troglodytics.org>
 
+executables:
+  - asdf-outdated
+
 targets:
   asdf-outdated:
     main: src/outdated.cr
