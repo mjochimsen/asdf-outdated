@@ -1,3 +1,4 @@
+require "./asdf"
 require "./version"
 
 # TODO: Write documentation for `Outdated`
