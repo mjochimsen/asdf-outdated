@@ -65,12 +65,17 @@ describe Version do
     v_1_3 = Version.new(1, 3)
 
     (v_1 <=> v_1).should eq 0
+    (v_1 == v_1).should be_true
 
     (v_1_2 <=> v_1_3).should eq -1
+    (v_1_2 < v_1_3).should be_true
     (v_1_3 <=> v_1_2).should eq 1
+    (v_1_3 > v_1_2).should be_true
 
     (v_1_2 <=> v_1_2_1).should eq -1
+    (v_1_2 < v_1_2_1).should be_true
     (v_1_2_1 <=> v_1_2).should eq 1
+    (v_1_2_1 > v_1_2).should be_true
   end
 
   it "converts to an array" do

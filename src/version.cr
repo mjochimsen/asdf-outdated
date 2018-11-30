@@ -76,16 +76,19 @@ struct Outdated::Version
     io << '.' << @nano unless @nano.nil?
   end
 
-  private def cmp(a : Int32?, b : Int32?)
-    case {a.nil?, b.nil?}
-    when {true, true}
-      0
-    when {true, false}
-      -1
-    when {false, true}
-      1
-    when {false, false}
-      a <=> b unless a.nil? || b.nil?
+  private def cmp(a : Int32?, b : Int32?) : Int32
+    unless a.nil?
+      unless b.nil?
+        a <=> b
+      else
+        1
+      end
+    else
+      unless b.nil?
+        -1
+      else
+        0
+      end
     end
   end
 end
