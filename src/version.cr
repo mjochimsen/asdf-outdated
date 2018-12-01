@@ -89,6 +89,15 @@ struct Outdated::Version
     io << '.' << @nano unless @nano.nil?
   end
 
+  # Determine the distance to another`Outdated::Version` value. The
+  # distance is defined as the the absolute difference between the
+  # `#to_u64` values of the versions.
+  def distance(other : Version) : UInt64
+    a = self.to_u64
+    b = other.to_u64
+    (a <= b) ? b - a : a - b
+  end
+
   private def cmp(a : UInt16?, b : UInt16?) : Int32
     unless a.nil?
       unless b.nil?

@@ -99,4 +99,16 @@ describe Version do
     Version.new(1, 2).to_s.should eq "1.2"
     Version.new(1).to_s.should eq "1"
   end
+
+  it "can compute the distance to another version" do
+    v_1 = Version.new(1)
+    v_1_2 = Version.new(1, 2)
+    v_1_2_1 = Version.new(1, 2, 1)
+    v_1_3 = Version.new(1, 3)
+
+    v_1_2.distance(v_1_3).should eq 0x0000000100000000
+    v_1_3.distance(v_1_2).should eq 0x0000000100000000
+    v_1.distance(v_1_2_1).should eq 0x0000000200010000
+    v_1_2_1.distance(v_1).should eq 0x0000000200010000
+  end
 end
