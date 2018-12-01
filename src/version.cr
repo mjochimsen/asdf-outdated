@@ -65,6 +65,17 @@ struct Outdated::Version
     [@major, @minor, @micro, @nano]
   end
 
+  # Convert an `Outdated::Version` to a `UInt64`. This is done by
+  # concatenating each component (`#major`, `#minor`, `#micro`, `#nano`)
+  # into a `UInt64`. `nil` values are treated as zeros.
+  def to_u64 : UInt64
+    major = @major.to_u64
+    minor = @minor.nil? ? 0_u64 : @minor.not_nil!.to_u64
+    micro = @micro.nil? ? 0_u64 : @micro.not_nil!.to_u64
+    nano = @nano.nil? ? 0_u64 : @nano.not_nil!.to_u64
+    (major << 48) | (minor << 32) | (micro << 16) | nano
+  end
+
   # Convert an `Outdated::Version` to a string. Normal version
   # dot-notation is used for the version number.
   #

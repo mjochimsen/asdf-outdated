@@ -86,6 +86,13 @@ describe Version do
     Version.new(1).to_a.should eq [1, nil, nil, nil]
   end
 
+  it "convert to a 64-bit unsigned integer" do
+    Version.new(1, 2, 3, 4).to_u64.should eq 0x0001000200030004
+    Version.new(1, 2, 3).to_u64.should eq 0x0001000200030000
+    Version.new(1, 2).to_u64.should eq 0x0001000200000000
+    Version.new(1).to_u64.should eq 0x0001000000000000
+  end
+
   it "converts to a string" do
     Version.new(1, 2, 3, 4).to_s.should eq "1.2.3.4"
     Version.new(1, 2, 3).to_s.should eq "1.2.3"
