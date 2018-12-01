@@ -1,12 +1,12 @@
 # asdf-outdated
 
-Show a list of the [`adsf`][https://github.com/asdf-vm/asdf] installed
+Show a list of the [`adsf`](https://github.com/asdf-vm/asdf) installed
 versions, with notations for those which are outdated.
 
 ## Installation
 
 You'll need the `crystal` toolchain installed to build this tool. See the
-[Crystal installation][https://crystal-lang.org/docs/installation/] docs
+[Crystal installation](https://crystal-lang.org/docs/installation/) docs
 for help.
 
 Once the toolchain is installed, run:
