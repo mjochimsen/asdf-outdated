@@ -1,17 +1,19 @@
 # A `Outdated::Version` describes a version number with `#major`,
 # `#minor`, `#micro`, and `#nano` components. Components beyond the
-# `#major` number may be `nil`.
+# `#major` number may be `nil`. Note that the largest value for any
+# component is `2^16 - 1` (`65535`).
 struct Outdated::Version
-  getter major : Int32
-  getter minor : Int32?
-  getter micro : Int32?
-  getter nano : Int32?
+  getter major : UInt16
+  getter minor : UInt16?
+  getter micro : UInt16?
+  getter nano : UInt16?
 
   include Comparable(Version)
 
   # Create a new `Outdated::Version` struct. The *major* number must not
   # be `nil`, but the other components may be.
-  def initialize(@major, @minor = nil, @micro = nil, @nano = nil)
+  def initialize(@major : UInt16, @minor : UInt16? = nil,
+                 @micro : UInt16? = nil, @nano : UInt16? = nil)
   end
 
   # Parse a string into a `Outdated::Version` structure. If the *version*
@@ -28,7 +30,7 @@ struct Outdated::Version
   # ```
   def self.parse?(version) : Version?
     return nil unless version =~ /^[0-9.]+$/
-    parts = version.split('.').map { |num| num.to_i? }
+    parts = version.split('.').map { |num| num.to_u16? }
     return nil if parts.any? { |part| part.nil? }
     major = parts.shift
     return nil if major.nil?
@@ -58,8 +60,8 @@ struct Outdated::Version
     comps.empty? ? 0 : comps.first
   end
 
-  # Convert an `Outdated::Version` to a four element `Array(Int32?)`.
-  def to_a
+  # Convert an `Outdated::Version` to a four element `Array(UInt16?)`.
+  def to_a : Array(UInt16?)
     [@major, @minor, @micro, @nano]
   end
 
@@ -76,7 +78,7 @@ struct Outdated::Version
     io << '.' << @nano unless @nano.nil?
   end
 
-  private def cmp(a : Int32?, b : Int32?) : Int32
+  private def cmp(a : UInt16?, b : UInt16?) : Int32
     unless a.nil?
       unless b.nil?
         a <=> b

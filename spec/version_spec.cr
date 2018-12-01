@@ -56,6 +56,7 @@ describe Version do
     Version.parse?("1..2").should be_nil
     Version.parse?(".1").should be_nil
     Version.parse?("1.").should be_nil
+    Version.parse?("70000").should be_nil
   end
 
   it "compares versions" do
