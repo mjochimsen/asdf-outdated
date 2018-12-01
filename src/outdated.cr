@@ -4,12 +4,15 @@ require "./version"
 module Outdated
   VERSION = "0.1.0"
 
-  # Get a list of outdated `asdf` plugins and the possible new versions.
+  # Show a list of the installed versions, with notations for those which
+  # are outdated.
   def self.run(plugins : Array(String))
     plugins.each do |plugin|
       ASDF.list_installed(plugin).each do |installed|
+        STDOUT << plugin << " " << installed
         upgrade = upgrade?(plugin, installed)
-        puts "#{plugin} #{installed} (#{upgrade})" unless upgrade.nil?
+        STDOUT << " < " << upgrade unless upgrade.nil?
+        STDOUT << "\n"
       end
     end
   end
