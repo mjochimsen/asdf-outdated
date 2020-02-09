@@ -9,6 +9,7 @@ module Outdated::ASDF
     unless versions.has_key?(plugin)
       versions[plugin] = `asdf list-all #{plugin}`.split
         .compact_map { |version| Version.parse?(version) }
+        .sort
     end
     versions[plugin]
   end
@@ -17,6 +18,7 @@ module Outdated::ASDF
     unless versions.has_key?(plugin)
       versions[plugin] = `asdf list #{plugin}`.split
         .compact_map { |version| Version.parse?(version) }
+        .sort
     end
     versions[plugin]
   end

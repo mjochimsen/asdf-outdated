@@ -47,7 +47,9 @@ struct Outdated::Version
   # v_1_2 = Outdated::Version.parse?("1.2")
   # v_1_2_0 = Outdated::Version.parse?("1.2.0")
   # v_1_2_1 = Outdated::Version.parse?("1.2.1")
+  # v_1_10 = Outdated::Version.parse?("1.10")
   #
+  # v_1_2_1 < v_10    # => true
   # v_1_2_0 < v_1_2_1 # => true
   # v_1_2 < v_1_2_1   # => true
   # v_1_2 < v_1_2_0   # => true
