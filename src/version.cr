@@ -29,6 +29,7 @@ struct Outdated::Version
   # Outdated::Version.parse?("1.2-beta") => nil
   # ```
   def self.parse?(version) : Version?
+    version = version.lchop('*')
     return nil unless version =~ /^[0-9.]+$/
     parts = version.split('.').map { |num| num.to_u16? }
     return nil if parts.any? { |part| part.nil? }
